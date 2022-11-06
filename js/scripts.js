@@ -10,8 +10,6 @@ window.onload = function() {
   btn0.addEventListener('click', showQuestion1)
 }
 
-
-
 function showQuestion1(event) {
   event.preventDefault();
 
@@ -105,6 +103,9 @@ function showQuestion5(event) {
 function showResults(event) {
   event.preventDefault();
 
+  const resultsPage = document.getElementById("results");
+  resultsPage.setAttribute("class", "hidden");
+
   const question5Page = document.getElementById("question5");
   question5Page.setAttribute("class", "hidden");
 
@@ -116,6 +117,10 @@ function showResults(event) {
 
   const responsevalue5 = parseInt(antiqueValue);
   console.log(responsevalue5);
+
+  console.log("broke")
+
+  btn5.addEventListener('click', showResults)
 
 }
 
