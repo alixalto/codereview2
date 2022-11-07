@@ -1,131 +1,75 @@
-function hideResults() {
-  document.getElementById("ruby").setAttribute("class", "hidden");
-  document.getElementById("react").setAttribute("class", "hidden");
-  document.getElementById("c").setAttribute("class", "hidden");
-  document.getElementById("python").setAttribute("class", "hidden");
-  document.getElementById("r").setAttribute("class", "hidden");
+window.onload = function() {
+  btn0.addEventListener('click', showQuestion1);
+  btn1.addEventListener('click', showQuestion2);
+  btn2.addEventListener('click', showQuestion3);
+  btn3.addEventListener('click', showQuestion4);
+  btn4.addEventListener('click', showQuestion5);
+  btn5.addEventListener('click', showResults);
 }
 
-window.onload = function() {
-  btn0.addEventListener('click', showQuestion1)
+function showQuestion1(event) {
+  event.preventDefault();
+  nextPage("intro", "question1");
+}
 
-  function showQuestion1(event) {
-    event.preventDefault();
+function showQuestion2(event) {
+  event.preventDefault();
+  nextPage("question1", "question2");
+}
 
-    const introPage = document.getElementById("intro");
-    introPage.setAttribute("class", "hidden");
+function showQuestion3(event) {
+  event.preventDefault();
+  nextPage("question2", "question3");
+}
 
-    const question1Page = document.getElementById("question1");
-    question1Page.removeAttribute("class");
 
-    btn1.addEventListener('click', showQuestion2)
+function showQuestion4(event) {
+  event.preventDefault();
+  nextPage("question3", "question4");
+}
+
+
+function showQuestion5(event) {
+  event.preventDefault();
+  nextPage("question4", "question5");
+}
+
+function showResults(event) {
+  event.preventDefault();
+  nextPage("question5", "results");
+
+  const total = getIntValue("snack") +
+      getIntValue("activity") +
+      getIntValue("animal") +
+      getIntValue("intergalactic") +
+      getIntValue("antique");
+
+  if (total <= 3) {
+    showElement("ruby");
+  } else if (total <= 6) {
+    showElement("react");
+  } else if (total <= 9) {
+    showElement("c");
+  } else if (total <= 12) {
+    showElement("python");
+  } else {
+    showElement("r");
   }
+}
 
+function getIntValue(id) {
+  return parseInt(document.getElementById(id).value);
+}
 
-  function showQuestion2(event) {
-    event.preventDefault();
+function showElement(id) {
+  document.getElementById(id).removeAttribute("class");
+}
 
-    const question1Page = document.getElementById("question1");
-    question1Page.setAttribute("class", "hidden");
+function hideElement(id) {
+  document.getElementById(id).setAttribute("class", "hidden");
+}
 
-    const question2Page = document.getElementById("question2");
-    question2Page.removeAttribute("class");
-
-    snackValue = document.getElementById("snack").value;
-    responseValue1 = parseInt(snackValue);
-    console.log(responseValue1);
-
-    btn2.addEventListener('click', showQuestion3);
-  }
-
-
-
-
-  function showQuestion3(event) {
-    event.preventDefault();
-
-    const question2Page = document.getElementById("question2");
-    question2Page.setAttribute("class", "hidden");
-
-    const question3Page = document.getElementById("question3");
-    question3Page.removeAttribute("class");
-
-    snackValue = document.getElementById("snack").value;
-    responseValue1 = parseInt(snackValue);
-    activityValue = document.getElementById("activity").value;
-    responseValue2 = parseInt(activityValue);
-    console.log(responseValue2);
-
-    btn3.addEventListener('click', showQuestion4)
-  }
-
-
-  function showQuestion4(event) {
-    event.preventDefault();
-
-    const question3Page = document.getElementById("question3");
-    question3Page.setAttribute("class", "hidden");
-
-    const question4Page = document.getElementById("question4");
-    question4Page.removeAttribute("class");
-
-    snackValue = document.getElementById("snack").value;
-    responseValue1 = parseInt(snackValue);
-    activityValue = document.getElementById("activity").value;
-    responseValue2 = parseInt(activityValue);
-    animalValue = document.getElementById("animal").value;
-    responseValue3 = parseInt(animalValue);
-    console.log(responseValue3);
-
-    btn4.addEventListener('click', showQuestion5)
-  }
-
-
-  function showQuestion5(event) {
-    event.preventDefault();
-
-    const question4Page = document.getElementById("question4");
-    question4Page.setAttribute("class", "hidden");
-
-    const question5Page = document.getElementById("question5");
-    question5Page.removeAttribute("class");
-
-    snackValue = document.getElementById("snack").value;
-    responseValue1 = parseInt(snackValue);
-    activityValue = document.getElementById("activity").value;
-    responseValue2 = parseInt(activityValue);
-    animalValue = document.getElementById("animal").value;
-    responseValue3 = parseInt(animalValue);
-    intergalacticValue = document.getElementById("intergalactic").value;
-    responseValue4 = parseInt(intergalacticValue);
-    console.log(responseValue4);
-
-    btn5.addEventListener('click', showResults)
-  }
-
-  function showResults(event) {
-    event.preventDefault();
-
-    const question5Page = document.getElementById("question5");
-    question5Page.setAttribute("class", "hidden");
-    const resultsPage = document.getElementById("results");
-    resultsPage.removeAttribute("class");
-
-    snackValue = document.getElementById("snack").value;
-    responseValue1 = parseInt(snackValue);
-    activityValue = document.getElementById("activity").value;
-    responseValue2 = parseInt(activityValue);
-    animalValue = document.getElementById("animal").value;
-    responseValue3 = parseInt(animalValue);
-    intergalacticValue = document.getElementById("intergalactic").value;
-    responseValue4 = parseInt(intergalacticValue);
-    antiqueValue = document.getElementById("antique").value;
-    responseValue5 = parseInt(antiqueValue);
-    console.log(responseValue5);
-
-    const totalscore = responseValue1 + responseValue2 + responseValue3 + responseValue4 + responseValue5;
-    console.log(totalscore);
-
-  }
-
+function nextPage(hide, show) {
+  hideElement(hide);
+  showElement(show);
 }
