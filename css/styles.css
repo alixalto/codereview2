@@ -2,4 +2,7 @@
   display: none;
 }
 
-
+.title {
+  color: purple;
+  font-size: smaller;
+}
